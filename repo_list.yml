@@ -1,3 +1,4 @@
-include_repos: &ref_0
-  - ''
-exclude_repos: *ref_0
+include_repos:
+  - Repotools/vulnado
+exclude_repos:
+  - Repotools/vul*
