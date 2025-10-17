@@ -12,7 +12,7 @@ veracode_static_scan:
       - synchronize
     target_branch:
       - default_branch
-  analysis_on_platform: false
+  analysis_on_platform: true
   break_build_policy_findings: false
   break_build_invalid_policy: true
   break_build_on_error: false
@@ -57,7 +57,7 @@ veracode_iac_secrets_scan:
     branches_to_exclude:
       - default_branch
   pull_request:
-    trigger: true
+    trigger: false
     action:
       - opened
       - synchronize
