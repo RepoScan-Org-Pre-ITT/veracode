@@ -2,7 +2,7 @@ veracode_static_scan:
   push:
     trigger: true
     branches_to_run:
-      - default_branch
+      - '*'
     branches_to_exclude:
       - default_branch
   pull_request:
@@ -32,7 +32,8 @@ veracode_sca_scan:
     trigger: false
     branches_to_run:
       - '*'
-    branches_to_exclude: null
+    branches_to_exclude:
+      - '*'
   pull_request:
     trigger: false
     action:
