@@ -1,4 +1,4 @@
 include_repos:
-  - '*'
+  - vulnado
 exclude_repos:
-  - ''
+  - vulnado
