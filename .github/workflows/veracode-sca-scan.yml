@@ -154,6 +154,7 @@ jobs:
     steps:
       - name: Cleanup workspace and Docker
         if: always()
+        shell: bash
         run: |
           echo "Running final cleanup..."
           sudo rm -rf $GITHUB_WORKSPACE/

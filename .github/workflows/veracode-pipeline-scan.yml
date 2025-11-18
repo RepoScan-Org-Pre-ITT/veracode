@@ -198,6 +198,7 @@ jobs:
             done
 
      - name: Cleanup workspace and Docker
+       shell: bash
        if: always()
        run: |
           echo "Running final cleanup..."

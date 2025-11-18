@@ -189,6 +189,7 @@ jobs:
     needs: [policy_scan, veracode-remove-sandbox, code-scanning-alert, create-issues]
     steps:
       - name: Cleanup workspace and Docker
+        shell: bash
         if: always()
         run: |
           echo "Running final cleanup..."

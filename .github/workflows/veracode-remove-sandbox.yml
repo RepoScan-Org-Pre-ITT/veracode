@@ -51,6 +51,7 @@ jobs:
     needs: [create-checks-run, veracode-remove-sandbox]
     steps:
       - name: Cleanup workspace and Docker
+        shell: bash
         run: |
           echo "Running final cleanup..."
           sudo rm -rf $GITHUB_WORKSPACE/
