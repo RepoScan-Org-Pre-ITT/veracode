@@ -187,9 +187,8 @@ jobs:
           path: "${{ steps.application_package_windows.outputs.working_dir || steps.application_package_windows.outputs.working_dir }}/veracode-artifacts/*"
           if-no-files-found: error
 
-      - name: Cleanup workspace and Docker
-        if: always()
-        shell: bash
-        run: |
-          echo "Running final cleanup..."
-          sudo rm -rf $GITHUB_WORKSPACE/
+  cleanup:
+    needs: [build-ubuntu, build-windows]
+    uses: ./.github/workflows/veracode-clean-up.yml
+    with:
+      runs_on: ${{ fromJSON(inputs.build_runs_on) }}

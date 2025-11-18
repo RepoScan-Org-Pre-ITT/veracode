@@ -70,13 +70,7 @@ jobs:
           deleteincompletescan: true
 
   cleanup:
-    runs-on: ${{ fromJson(github.event.client_payload.user_config.default_runs_on) }}
-    if: always()
     needs: [build, sandbox_scan]
-    steps:
-      - name: Cleanup workspace and Docker
-        shell: bash
-        if: always()
-        run: |
-          echo "Running final cleanup..."
-          sudo rm -rf $GITHUB_WORKSPACE/
+    uses: ./.github/workflows/veracode-clean-up.yml
+    with:
+      runs_on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
