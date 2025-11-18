@@ -186,3 +186,9 @@ jobs:
           name: veracode-artifact
           path: "${{ steps.application_package_windows.outputs.working_dir || steps.application_package_windows.outputs.working_dir }}/veracode-artifacts/*"
           if-no-files-found: error
+
+      - name: Cleanup workspace and Docker
+        if: always()
+        run: |
+          echo "Running final cleanup..."
+          sudo rm -rf $GITHUB_WORKSPACE/
