@@ -70,7 +70,8 @@ jobs:
           deleteincompletescan: true
 
   cleanup:
-    needs: [build, sandbox_scan]
+    needs: sandbox_scan
+    if: always()
     uses: ./.github/workflows/veracode-clean-up.yml
     with:
-      runs_on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
+      runs_on: ${{ github.event.client_payload.user_config.default_runs_on }}

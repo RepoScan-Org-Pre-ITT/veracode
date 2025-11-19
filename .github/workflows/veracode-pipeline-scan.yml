@@ -202,4 +202,4 @@ jobs:
     if: always()
     uses: ./.github/workflows/veracode-clean-up.yml
     with:
-      runs_on: ${{ fromJSON(inputs.default_runs_on) }}
+      runs_on: ${{ inputs.default_runs_on }}

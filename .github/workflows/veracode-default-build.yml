@@ -191,4 +191,4 @@ jobs:
     needs: [build-ubuntu, build-windows]
     uses: ./.github/workflows/veracode-clean-up.yml
     with:
-      runs_on: ${{ fromJSON(inputs.build_runs_on) }}
+      runs_on: ${{ inputs.default_runs_on }}

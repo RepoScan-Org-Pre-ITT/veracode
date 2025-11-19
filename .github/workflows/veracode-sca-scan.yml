@@ -148,7 +148,8 @@ jobs:
           breakBuildOnPolicyFindings: ${{ github.event.client_payload.user_config.break_build_policy_findings }}
 
   cleanup:
-    needs: [register, veracode-sca-scan]
+    needs: veracode-sca-scan
+    if: always()
     uses: ./.github/workflows/veracode-clean-up.yml
     with:
-      runs_on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
+      runs_on: ${{ github.event.client_payload.user_config.default_runs_on }}

@@ -46,7 +46,8 @@ jobs:
           sandboxname: GitHub App Scans-${{ github.event.client_payload.repository.branch }}
 
   cleanup:
-    needs: [create-checks-run, veracode-remove-sandbox]
+    needs: veracode-remove-sandbox
+    if: always()
     uses: ./.github/workflows/veracode-clean-up.yml
     with:
-      runs_on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
+      runs_on: ${{ github.event.client_payload.user_config.default_runs_on }}
