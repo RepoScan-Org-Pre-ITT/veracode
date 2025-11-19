@@ -70,11 +70,4 @@ veracode_iac_secrets_scan:
     trigger: false
     commands:
       - Veracode IAC Scan
-actions:
-  build:
-    runs_on: !<tag:yaml.org,2002:js/undefined> ''
-  veracode_static_scan:
-    build:
-      runs_on: windows-2022
-default:
-  runs_on: windows-2022
+
