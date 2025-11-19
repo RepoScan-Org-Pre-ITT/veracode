@@ -1,6 +1,6 @@
 veracode_static_scan:
   push:
-    trigger: true
+    trigger: false
     branches_to_run:
       - '*'
     branches_to_exclude: null
@@ -72,4 +72,4 @@ veracode_iac_secrets_scan:
       - Veracode IAC Scan
 actions:
   build:
-    runs_on: windows-latest
+    runs_on: !<tag:yaml.org,2002:js/undefined> ''
