@@ -199,6 +199,7 @@ jobs:
 
   cleanup:
     needs: [update-checks-status]
+    if: always()
     uses: ./.github/workflows/veracode-clean-up.yml
     with:
       runs_on: ${{ fromJSON(inputs.build_runs_on) }}
