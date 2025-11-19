@@ -198,7 +198,7 @@ jobs:
             done
 
   cleanup:
-    needs: [update-checks-status]
+    needs: update-checks-status
     if: always()
     uses: ./.github/workflows/veracode-clean-up.yml
     with:
