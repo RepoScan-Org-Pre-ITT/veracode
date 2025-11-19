@@ -198,7 +198,7 @@ jobs:
             done
 
   cleanup:
-    needs: [prepare_pipeline_scan, pipeline_scan, update-checks-status]
+    needs: [update-checks-status]
     uses: ./.github/workflows/veracode-clean-up.yml
     with:
       runs_on: ${{ fromJSON(inputs.build_runs_on) }}
