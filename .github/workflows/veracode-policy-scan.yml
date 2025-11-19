@@ -184,7 +184,7 @@ jobs:
           commitHash: ${{ inputs.sha }}
 
   cleanup:
-    needs: create-issues
+    needs: [policy_scan, veracode-remove-sandbox, code-scanning-alert, create-issues]
     if: always()
     uses: ./.github/workflows/veracode-clean-up.yml
     with:
