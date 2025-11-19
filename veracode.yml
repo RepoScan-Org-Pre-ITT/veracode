@@ -1,6 +1,6 @@
 veracode_static_scan:
   push:
-    trigger: true
+    trigger: false
     branches_to_run:
       - '*'
     branches_to_exclude: null
@@ -75,4 +75,4 @@ default:
 actions:
   veracode_static_scan:
     build:
-      runs_on: windows-2022
+      runs_on: windows-latest
