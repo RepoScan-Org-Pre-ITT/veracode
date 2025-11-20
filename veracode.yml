@@ -26,7 +26,7 @@ veracode_static_scan:
     administrator for more information.
   policy: Veracode Recommended Medium + SCA
   create_code_scanning_alert: false
-  create_issue: false
+  create_issue: true
   issues:
     trigger: false
     commands:
