@@ -28,7 +28,7 @@ veracode_static_scan:
   create_code_scanning_alert: false
   create_issue: true
   issues:
-    trigger: false
+    trigger: true
     commands:
       - Veracode Static Scan
   create_work_items: true
