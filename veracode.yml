@@ -1,5 +1,5 @@
 default:
-  runs_on: ubuntu-latest
+  runs_on: windows-2022
 actions:
   veracode_static_scan:
     build:
@@ -11,7 +11,7 @@ veracode_static_scan:
       - '*'
     branches_to_exclude: null
   pull_request:
-    trigger: true
+    trigger: false
     action:
       - opened
       - synchronize
@@ -21,7 +21,7 @@ veracode_static_scan:
   break_build_policy_findings: true
   break_build_invalid_policy: true
   break_build_on_error: false
-  error_message: "Veracode static scan faced a problem. Please contact your Veracode"
+  error_message: Veracode static scan faced a problem. Please contact your Veracode
   policy: Veracode Recommended Medium + SCA
   create_code_scanning_alert: false
   create_issue: true
@@ -37,7 +37,7 @@ veracode_sca_scan:
       - '*'
     branches_to_exclude: null
   pull_request:
-    trigger: true
+    trigger: false
     action:
       - opened
       - synchronize
@@ -59,7 +59,7 @@ veracode_iac_secrets_scan:
       - '*'
     branches_to_exclude: null
   pull_request:
-    trigger: true
+    trigger: false
     action:
       - opened
       - synchronize
