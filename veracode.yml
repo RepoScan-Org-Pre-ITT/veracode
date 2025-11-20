@@ -28,7 +28,7 @@ veracode_static_scan:
   create_work_items: true
 veracode_sca_scan:
   push:
-    trigger: false
+    trigger: true
     branches_to_run:
       - '*'
     branches_to_exclude: null
@@ -45,7 +45,7 @@ veracode_sca_scan:
     Veracode SCA scan faced a problem. Please contact your Veracode
     administrator for more information.
   issues:
-    trigger: false
+    trigger: true
     commands:
       - Veracode SCA Scan
 veracode_iac_secrets_scan:
