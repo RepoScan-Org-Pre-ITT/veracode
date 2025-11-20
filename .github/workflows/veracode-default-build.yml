@@ -91,7 +91,7 @@ jobs:
             bundle install
             cd ..
           fi
-          veracode package --source source-code --output veracode-artifacts --trust
+          veracode package --source source-code --output veracode-artifacts --trust --verbose
 
       # ---------------- Error handler ----------------
       - name: Package error
@@ -155,10 +155,10 @@ jobs:
                 if ($msbuildPath) {
                   $msbuildDir = [System.IO.Path]::GetDirectoryName($msbuildPath)
                   Write-Host "msbuildDir install check: $msbuildDir"
-                  if ($msbuildDir -and -not ($env:PATH.Split(";") | Where-Object { $_.TrimEnd('\') -ieq $msbuildDir.TrimEnd('\') })) {
-                    $env:PATH = $msbuildDir + ";" + $env:PATH
-                    Write-Host "msbuild path added: $env:PATH"
-                  }
+      
+                  # Persist path across steps
+                  "$msbuildDir" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+                  Write-Host "MSBuild path exported to GITHUB_PATH: $msbuildDir"
                 }
               }
             } catch {
@@ -172,7 +172,7 @@ jobs:
         run: |
           $working_path = (Get-Location).Path
           "working_dir=$working_path" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          & $env:VERACODE_CLI package --source source-code --output veracode-artifacts --trust
+          & $env:VERACODE_CLI package --source source-code --output veracode-artifacts --trust --verbose
 
       # ---------------- Error handler ----------------
       - name: Package error
