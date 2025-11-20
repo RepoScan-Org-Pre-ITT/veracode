@@ -1,15 +1,3 @@
-default:
-  runs_on: ubuntu-22.04
-actions:
-  veracode_static_scan:
-    build:
-      runs_on: ubuntu-latest
-  veracode_sca_scan:
-    build:
-      runs_on: ubuntu-latest
-  veracode_iac_secrets_scan:
-    build:
-      runs_on: ubuntu-latest
 veracode_static_scan:
   push:
     trigger: true
