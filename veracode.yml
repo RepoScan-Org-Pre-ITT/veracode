@@ -4,9 +4,6 @@ actions:
   veracode_static_scan:
     build:
       runs_on: ubuntu-latest
-veracode_sca_scan:
-    build:
-      runs_on:
 veracode_static_scan:
   push:
     trigger: true
