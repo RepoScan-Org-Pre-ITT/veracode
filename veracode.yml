@@ -24,7 +24,7 @@ veracode_static_scan:
   issues:
     trigger: true
     commands:
-      - Veracode Static Scan
+      - Veracode Scan
 veracode_sca_scan:
   push:
     trigger: false
@@ -45,7 +45,7 @@ veracode_sca_scan:
   issues:
     trigger: false
     commands:
-      - Veracode Static Scan
+      - Veracode Scan
 veracode_iac_secrets_scan:
   push:
     trigger: false
@@ -65,5 +65,5 @@ veracode_iac_secrets_scan:
   error_message: Veracode static scan faced a problem.
   issues:
     trigger: true
-    commands: Veracode Static Scan
+    commands: Veracode Scan
       - Veracode IAC Scan
