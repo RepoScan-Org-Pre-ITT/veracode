@@ -36,7 +36,7 @@ veracode_static_scan:
   issues:
     trigger: true
     commands:
-      - "Veracode Scan"
+      - "Veracode SAST Scan"
 
 veracode_sca_scan:
   push:
@@ -63,7 +63,7 @@ veracode_sca_scan:
   issues:
     trigger: true
     commands:
-      - "Veracode Scan"
+      - "Veracode SCA Scan"
 
 veracode_iac_secrets_scan:
   push:
@@ -92,4 +92,4 @@ veracode_iac_secrets_scan:
   issues:
     trigger: true
     commands:
-      - "Veracode Scan"
+      - "Veracode IAC Scan"
