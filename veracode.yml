@@ -15,9 +15,9 @@ veracode_static_scan:
     target_branch:
       - default_branch
   analysis_on_platform: false
-  break_build_policy_findings: false
+  break_build_policy_findings: true
   break_build_invalid_policy: true
-  break_build_on_error: false
+  break_build_on_error: true
   error_message: >-
     Veracode static scan faced a problem. Please contact your Veracode
     administrator for more information.
