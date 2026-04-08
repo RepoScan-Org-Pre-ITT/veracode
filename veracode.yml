@@ -9,9 +9,7 @@ veracode_static_scan:
     branches_to_exclude: null
   pull_request:
     trigger: false
-    action:
-      - opened
-      - synchronize
+    action: []
     target_branch:
       - master
   analysis_on_platform: false
@@ -38,6 +36,7 @@ veracode_sca_scan:
   pull_request:
     trigger: true
     action:
+      - opened
       - synchronize
     target_branch:
       - master
@@ -60,9 +59,7 @@ veracode_iac_secrets_scan:
     branches_to_exclude: null
   pull_request:
     trigger: false
-    action:
-      - opened
-      - synchronize
+    action: []
     target_branch:
       - master
   break_build_policy_findings: true
