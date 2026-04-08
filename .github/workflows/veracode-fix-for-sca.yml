@@ -1,0 +1,108 @@
+name: Veracode Fix for SCA
+
+run-name: Veracode Fix for SCA - ${{ github.event.client_payload.repository.name }}
+
+on:
+  repository_dispatch:
+    types:
+      - veracode-fix-for-sca
+
+jobs:
+  cleanup:
+    uses: ./.github/workflows/veracode-clean-up.yml
+    with:
+      runs_on: ${{ github.event.client_payload.user_config.default_runs_on }}
+
+  create_metadata:
+    needs: cleanup
+    uses: ./.github/workflows/veracode-metadata.yml
+    with:
+      event_type: ${{ github.event.client_payload.event_type }}
+      repository_name: ${{ github.event.client_payload.repository.name }}
+      repository_owner: ${{ github.event.client_payload.repository.owner }}
+      pull_request_num: ${{ github.event.client_payload.issue_number }}
+      branch: ${{ github.event.client_payload.repository.branch }}
+      head_sha: ${{ github.event.client_payload.sha }}
+
+  fix-for-sca-action:
+    needs: create_metadata
+    runs-on: ubuntu-latest # TODO: change this back once windows testing is done
+    steps:
+    - name: Download SCA scan artifact
+      uses: actions/download-artifact@v4
+      with:
+        github-token: ${{ github.event.client_payload.token }}
+        run-id: ${{ github.event.client_payload.workflow_run_id }}
+        artifact-ids: ${{ github.event.client_payload.artifact_id }}
+        path: ./veracode_artifact_directory
+
+    - name: Check out to get veracode CLI
+      uses: actions/checkout@v4
+      with:
+        path: 'veracode-helper'
+        fetch-depth: 0
+        sparse-checkout-cone-mode: false
+        sparse-checkout: |
+          helper/cli/*
+
+    - name: Set up CLI (Linux/macOS)
+      id: cli-setup-unix
+      if: runner.os != 'Windows'
+      shell: bash
+      run: |
+        cd veracode-helper/helper/cli
+        cliFile=$(ls -1 *.tar.gz | head -n 1)
+        cliFileName=$(echo "$cliFile" | cut -c 1-$((${#cliFile}-7)))
+        tar -zxvf $cliFile
+        cd $cliFileName
+        current_path=$(pwd)
+        echo "cli-path=$current_path" >> $GITHUB_OUTPUT
+
+    - name: Set up CLI (Windows)
+      id: cli-setup-windows
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        cd veracode-helper/helper/cli
+        & .\veracode-cli_2.47.0_windows.ps1
+        $current_path = "$env:APPDATA\veracode"
+        echo "cli-path=$current_path" >> $env:GITHUB_OUTPUT
+        # Debug: verify the binary exists
+        if (Test-Path "$current_path\veracode.exe") {
+          Write-Host "✓ veracode.exe found at $current_path"
+        } else {
+          Write-Host "✗ veracode.exe NOT found at $current_path"
+          Get-ChildItem "$current_path" -Recurse
+        }
+     
+    - name: Configure git for LF line endings (Windows)
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        git config --global core.eol lf
+        git config --global core.autocrlf false
+
+    - uses: actions/checkout@v4
+      with:
+        repository: ${{ github.event.client_payload.repository.full_name }}
+        ref: ${{ github.event.client_payload.repository.branch }}
+        token: ${{ github.event.client_payload.token }}
+        path: 'source-code'
+
+    - id: run-fix-sca
+      uses: tech-r-us-qa/veracode-fix-for-sca-qa@main
+      env:
+        FIX_SCA_BACKEND_URL: '${{ vars.FIX_SCA_BACKEND_URL }}'
+        VERACODE_API_KEY_ID: '${{ secrets.VERACODE_API_ID }}'
+        VERACODE_API_KEY_SECRET: '${{ secrets.VERACODE_API_KEY }}'
+        CLI_PATH: ${{ runner.os == 'Windows' && steps.cli-setup-windows.outputs.cli-path || steps.cli-setup-unix.outputs.cli-path }}
+      with:
+        github-token: ${{ github.event.client_payload.token }}
+        pr-number: ${{ github.event.client_payload.issue_number }} 
+        sca-scan-run-id: ${{ github.event.client_payload.workflow_run_id }} 
+        sca-scan-artifact-id: ${{ github.event.client_payload.artifact_id }} 
+        repository: ${{ github.event.client_payload.repository.full_name }}
+        branch: ${{ github.event.client_payload.repository.branch }} 
+        fix-sca-params: ${{ github.event.client_payload.fix_sca_params }} 
+        github-api-url: ${{ github.api_url }} 
+
