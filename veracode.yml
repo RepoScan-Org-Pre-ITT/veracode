@@ -38,7 +38,7 @@ veracode_sca_scan:
   pull_request:
     trigger: true
     action:
-      - opened
+      - synchronize
     target_branch:
       - master
   break_build_on_error: true
@@ -49,6 +49,9 @@ veracode_sca_scan:
     trigger: true
     commands:
       - Veracode SCA Scan
+  fix_for_sca:
+    pull_request:
+      trigger: true
 veracode_iac_secrets_scan:
   push:
     trigger: false
