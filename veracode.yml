@@ -1,4 +1,4 @@
-debug: false
+debug: true
 default:
   runs_on: ubuntu-latest
 veracode_static_scan:
@@ -9,9 +9,11 @@ veracode_static_scan:
     branches_to_exclude: null
   pull_request:
     trigger: true
-    action: []
+    action: 
+      - opened
+      - synchronize
     target_branch:
-      - master
+      - "*"
   analysis_on_platform: true
   break_build_policy_findings: false
   break_build_invalid_policy: true
