@@ -8,12 +8,10 @@ veracode_static_scan:
       - js-dynamic
     branches_to_exclude: null
   pull_request:
-    trigger: true
-    action: 
-      - opened
-      - synchronize
+    trigger: false
+    action: []
     target_branch:
-      - "*"
+      - master
   analysis_on_platform: true
   break_build_policy_findings: false
   break_build_invalid_policy: true
@@ -31,7 +29,7 @@ veracode_static_scan:
   create_work_items: true
 veracode_sca_scan:
   push:
-    trigger: true
+    trigger: false
     branches_to_run:
       - js-dynamic
     branches_to_exclude: null
