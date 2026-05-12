@@ -3,9 +3,9 @@ default:
   runs_on: ubuntu-latest
 veracode_static_scan:
   push:
-    trigger: false
+    trigger: true
     branches_to_run:
-      - '*'
+      - js-dynamic
     branches_to_exclude:
       - branch-1
   pull_request:
@@ -28,9 +28,9 @@ veracode_static_scan:
   create_work_items: true
 veracode_sca_scan:
   push:
-    trigger: false
+    trigger: true
     branches_to_run:
-      - '*'
+      - js-dynamic
     branches_to_exclude:
       - branch-1
   pull_request:
@@ -51,9 +51,9 @@ veracode_sca_scan:
       trigger: true
 veracode_iac_secrets_scan:
   push:
-    trigger: false
+    trigger: true
     branches_to_run:
-      - '*'
+      - js-dynamic
     branches_to_exclude:
       - branch-1
   pull_request:
