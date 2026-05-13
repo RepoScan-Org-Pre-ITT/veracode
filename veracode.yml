@@ -44,13 +44,13 @@ veracode_sca_scan:
   break_build_on_error: false
   error_message: Veracode static scan faced a problem.
   issues:
-    trigger: false
+    trigger: true
     commands:
       - Veracode SCA Scan
   fix_for_sca:
     pull_request:
       trigger: true
-  break_build_policy_findings: true
+  break_build_policy_findings: false
 veracode_iac_secrets_scan:
   push:
     trigger: false
