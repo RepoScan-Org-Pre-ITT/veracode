@@ -9,7 +9,7 @@ veracode_static_scan:
     branches_to_exclude:
       - branch-1
   pull_request:
-    trigger: false
+    trigger: true
     action:
       - opened
     target_branch:
@@ -36,7 +36,7 @@ veracode_sca_scan:
     branches_to_exclude:
       - branch-1
   pull_request:
-    trigger: false
+    trigger: true
     action:
       - opened
     target_branch:
@@ -59,7 +59,7 @@ veracode_iac_secrets_scan:
     branches_to_exclude:
       - branch-1
   pull_request:
-    trigger: false
+    trigger: true
     action:
       - opened
     target_branch:
