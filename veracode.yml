@@ -34,7 +34,7 @@ veracode_static_scan:
   analysis_branch: ENTER BRANCH NAME HERE
 veracode_sca_scan:
   push:
-    trigger: false
+    trigger: true
     branches_to_run:
       - '*'
     branches_to_exclude:
@@ -59,6 +59,7 @@ veracode_sca_scan:
     pull_request:
       trigger: true
   break_build_policy_findings: false
+  break_build_invalid_policy: false
 veracode_iac_secrets_scan:
   push:
     trigger: false
