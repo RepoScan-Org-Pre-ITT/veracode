@@ -2,5 +2,6 @@ include_repos:
   - example-javascript
   - vulnado
   - verademo-dotnetcore
+  - '*'
 exclude_repos: 
   - veracode
