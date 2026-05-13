@@ -12,6 +12,10 @@ veracode_static_scan:
     trigger: true
     action:
       - opened
+      - edited
+      - synchronize
+      - closed
+      - reopened
     target_branch:
       - master
   analysis_on_platform: false
@@ -39,6 +43,10 @@ veracode_sca_scan:
     trigger: true
     action:
       - opened
+      - edited
+      - synchronize
+      - closed
+      - reopened
     target_branch:
       - master
   break_build_on_error: false
@@ -62,6 +70,10 @@ veracode_iac_secrets_scan:
     trigger: true
     action:
       - opened
+      - edited
+      - synchronize
+      - closed
+      - reopened
     target_branch:
       - master
   break_build_policy_findings: false
