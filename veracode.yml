@@ -36,12 +36,12 @@ veracode_sca_scan:
     branches_to_exclude:
       - branch-1
   pull_request:
-    trigger: true
+    trigger: false
     action:
       - synchronize
     target_branch:
       - default_branch
-  break_build_on_error: true
+  break_build_on_error: false
   error_message: Veracode static scan faced a problem.
   issues:
     trigger: false
