@@ -11,6 +11,7 @@ veracode_static_scan:
   pull_request:
     trigger: true
     action:
+      - opened
       - synchronize
     target_branch:
       - default_branch
@@ -38,6 +39,7 @@ veracode_sca_scan:
   pull_request:
     trigger: false
     action:
+      - opened
       - synchronize
     target_branch:
       - default_branch
@@ -61,6 +63,7 @@ veracode_iac_secrets_scan:
   pull_request:
     trigger: false
     action:
+      - opened
       - synchronize
     target_branch:
       - default_branch
