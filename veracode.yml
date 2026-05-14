@@ -6,14 +6,13 @@ veracode_static_scan:
     trigger: false
     branches_to_run:
       - '*'
-    branches_to_exclude:
-      - branch-1
+    branches_to_exclude: default_branch
   pull_request:
-    trigger: false
+    trigger: true
     action:
       - synchronize
     target_branch:
-      - default_branch
+      - master
   analysis_on_platform: false
   break_build_policy_findings: false
   break_build_invalid_policy: false
@@ -27,14 +26,14 @@ veracode_static_scan:
     commands:
       - Veracode SAST Scan
   create_work_items: true
-  analysis_branch: ENTER BRANCH NAME HERE
+  analysis_branch:
+    - js-dynamic
 veracode_sca_scan:
   push:
-    trigger: true
+    trigger: false
     branches_to_run:
       - '*'
-    branches_to_exclude:
-      - branch-1
+    branches_to_exclude: default_branch
   pull_request:
     trigger: false
     action:
@@ -54,11 +53,10 @@ veracode_sca_scan:
   break_build_invalid_policy: false
 veracode_iac_secrets_scan:
   push:
-    trigger: true
+    trigger: false
     branches_to_run:
       - '*'
-    branches_to_exclude:
-      - branch-1
+    branches_to_exclude: default_branch
   pull_request:
     trigger: false
     action:
