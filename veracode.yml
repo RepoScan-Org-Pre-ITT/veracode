@@ -13,7 +13,7 @@ veracode_static_scan:
     action:
       - opened
     target_branch:
-      - default_branch
+      - js-dynamic
   analysis_on_platform: false
   break_build_policy_findings: false
   break_build_invalid_policy: false
@@ -40,7 +40,7 @@ veracode_sca_scan:
     action:
       - opened
     target_branch:
-      - default_branch
+      - js-dynamic
   break_build_on_error: false
   error_message: Veracode static scan faced a problem.
   issues:
@@ -64,7 +64,7 @@ veracode_iac_secrets_scan:
     action:
       - opened
     target_branch:
-      - default_branch
+      - js-dynamic
   break_build_policy_findings: false
   break_build_on_error: false
   error_message: Veracode static scan faced a problem.
