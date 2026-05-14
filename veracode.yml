@@ -3,10 +3,11 @@ default:
   runs_on: ubuntu-latest
 veracode_static_scan:
   push:
-    trigger: true
+    trigger: false
     branches_to_run:
       - '*'
-    branches_to_exclude: default_branch
+    branches_to_exclude:
+      - branch-1
   pull_request:
     trigger: false
     action:
@@ -16,7 +17,7 @@ veracode_static_scan:
       - closed
       - reopened
     target_branch:
-      - master
+      - default_branch
   analysis_on_platform: false
   break_build_policy_findings: false
   break_build_invalid_policy: false
@@ -34,10 +35,11 @@ veracode_static_scan:
     - js-dynamic
 veracode_sca_scan:
   push:
-    trigger: true
+    trigger: false
     branches_to_run:
       - '*'
-    branches_to_exclude: default_branch
+    branches_to_exclude:
+      - branch-1
   pull_request:
     trigger: false
     action:
@@ -47,7 +49,7 @@ veracode_sca_scan:
       - closed
       - reopened
     target_branch:
-      - master
+      - default_branch
   break_build_on_error: false
   error_message: Veracode static scan faced a problem.
   issues:
@@ -61,10 +63,11 @@ veracode_sca_scan:
   break_build_invalid_policy: false
 veracode_iac_secrets_scan:
   push:
-    trigger: true
+    trigger: false
     branches_to_run:
       - '*'
-    branches_to_exclude: default_branch
+    branches_to_exclude:
+      - branch-1
   pull_request:
     trigger: false
     action:
@@ -74,7 +77,7 @@ veracode_iac_secrets_scan:
       - closed
       - reopened
     target_branch:
-      - master
+      - default_branch
   break_build_policy_findings: false
   break_build_on_error: false
   error_message: Veracode static scan faced a problem.
