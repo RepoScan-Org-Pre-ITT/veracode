@@ -31,7 +31,7 @@ veracode_static_scan:
       - Veracode SAST Scan
   create_work_items: true
   analysis_branch:
-    - js-dynamic
+    - master
 veracode_sca_scan:
   push:
     trigger: false
