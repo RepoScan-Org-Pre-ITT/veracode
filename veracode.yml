@@ -58,9 +58,9 @@ veracode_iac_secrets_scan:
       - js-dynamic
     branches_to_exclude: default_branch
   pull_request:
-    trigger: false
+    trigger: true
     action:
-      - synchronize
+      - opened
     target_branch:
       - master
   break_build_policy_findings: false
