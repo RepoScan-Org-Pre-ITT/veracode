@@ -5,12 +5,12 @@ veracode_static_scan:
   push:
     trigger: false
     branches_to_run:
-      - '*'
+      - js-dynamic
     branches_to_exclude: default_branch
   pull_request:
     trigger: true
     action:
-      - synchronize
+      - opened
     target_branch:
       - master
   analysis_on_platform: false
@@ -32,14 +32,14 @@ veracode_sca_scan:
   push:
     trigger: false
     branches_to_run:
-      - '*'
+      - js-dynamic
     branches_to_exclude: default_branch
   pull_request:
     trigger: false
     action:
       - synchronize
     target_branch:
-      - default_branch
+      - master
   break_build_on_error: false
   error_message: Veracode static scan faced a problem.
   issues:
@@ -55,14 +55,14 @@ veracode_iac_secrets_scan:
   push:
     trigger: false
     branches_to_run:
-      - '*'
+      - js-dynamic
     branches_to_exclude: default_branch
   pull_request:
     trigger: false
     action:
       - synchronize
     target_branch:
-      - default_branch
+      - master
   break_build_policy_findings: false
   break_build_on_error: false
   error_message: Veracode static scan faced a problem.
