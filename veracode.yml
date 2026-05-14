@@ -10,7 +10,11 @@ veracode_static_scan:
   pull_request:
     trigger: true
     action:
+      - opened
+      - edited
       - synchronize
+      - closed
+      - reopened
     target_branch:
       - master
   analysis_on_platform: false
@@ -35,9 +39,13 @@ veracode_sca_scan:
       - js-dynamic
     branches_to_exclude: default_branch
   pull_request:
-    trigger: false
+    trigger: true
     action:
+      - opened
+      - edited
       - synchronize
+      - closed
+      - reopened
     target_branch:
       - master
   break_build_on_error: false
@@ -60,7 +68,11 @@ veracode_iac_secrets_scan:
   pull_request:
     trigger: true
     action:
+      - opened
+      - edited
       - synchronize
+      - closed
+      - reopened
     target_branch:
       - master
   break_build_policy_findings: false
