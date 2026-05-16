@@ -37,7 +37,7 @@ veracode_sca_scan:
     branches_to_exclude:
       - branch-1
   pull_request:
-    trigger: true
+    trigger: false
     action:
       - edited
     target_branch:
