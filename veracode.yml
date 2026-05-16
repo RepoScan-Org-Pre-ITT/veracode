@@ -39,7 +39,8 @@ veracode_sca_scan:
   pull_request:
     trigger: true
     action:
-      - closed
+      - opened
+      - synchronize
     target_branch:
       - master
   break_build_on_error: false
