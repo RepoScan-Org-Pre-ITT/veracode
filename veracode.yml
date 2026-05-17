@@ -6,7 +6,7 @@ veracode_static_scan:
     branches_to_exclude:
       - branch-1
   pull_request:
-    trigger: true
+    trigger: false
     action:
       - edited
     target_branch:
@@ -33,10 +33,9 @@ veracode_sca_scan:
     branches_to_exclude:
       - branch-1
   pull_request:
-    trigger: false
+    trigger: true
     action:
-      - opened
-      - synchronize
+      - reopened
     target_branch:
       - master
   break_build_on_error: false
