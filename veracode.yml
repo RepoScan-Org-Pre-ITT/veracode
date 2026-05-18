@@ -29,7 +29,7 @@ veracode_sca_scan:
   push:
     trigger: false
     branches_to_run:
-      - master
+      - '*'
     branches_to_exclude:
       - branch-1
   pull_request:
