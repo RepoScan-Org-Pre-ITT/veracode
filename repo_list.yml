@@ -1,4 +1,2 @@
-include_repos:
-  - '*'
-exclude_repos:
-  - veracode
+include_repos: vulnado
+exclude_repos: '*'
