@@ -1,6 +1,2 @@
-include_repos:
-  - example-javascript
-  - vulnado
-  - verademo-dotnetcore
-exclude_repos:
-  - veracode
+include_repos: vulnado
+exclude_repos: '*'
