@@ -1,6 +1,6 @@
 veracode_static_scan:
   push:
-    trigger: true
+    trigger: false
     branches_to_run:
       - js-dynamic
     branches_to_exclude:
@@ -28,11 +28,11 @@ veracode_static_scan:
   analysis_branch: ENTER BRANCH NAME HERE
 veracode_sca_scan:
   push:
-    trigger: false
+    trigger: true
     branches_to_run:
       - master
     branches_to_exclude:
-      - js-dynamic
+      - developBranch
   pull_request:
     trigger: false
     action:
