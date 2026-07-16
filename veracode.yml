@@ -8,8 +8,7 @@ veracode_static_scan:
   pull_request:
     trigger: true
     action:
-      - opened
-      - synchronize
+      - closed
     target_branch:
       - master
   analysis_on_platform: false
