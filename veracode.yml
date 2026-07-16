@@ -26,13 +26,13 @@ veracode_static_scan:
       - Veracode Static Scan
 veracode_sca_scan:
   push:
-    trigger: false
+    trigger: true
     branches_to_run:
       - js-dynamic
     branches_to_exclude:
       - branch-1
   pull_request:
-    trigger: true
+    trigger: false
     action:
       - opened
       - synchronize
@@ -42,7 +42,7 @@ veracode_sca_scan:
     pull_request:
       trigger: true
   break_build_on_error: false
-  break_build_policy_findings: false
+  break_build_policy_findings: true
   error_message: Veracode static scan faced a problem.
   issues:
     trigger: false
