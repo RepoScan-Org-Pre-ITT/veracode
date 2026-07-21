@@ -35,7 +35,7 @@ veracode_sca_scan:
   pull_request:
     trigger: true
     action:
-      - reopened
+      - closed
     target_branch:
       - master
   fix_for_sca:
