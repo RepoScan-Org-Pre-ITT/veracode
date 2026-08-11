@@ -261,8 +261,7 @@ jobs:
             "package",
             "--source", "source-code",
             "--output", "veracode-artifacts",
-            "--trust",
-            "--skip-packagers", "sql, cobol"
+            "--trust"
           )
 
           if ("${{ inputs.debug }}" -eq "true") {
