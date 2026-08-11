@@ -107,7 +107,7 @@ jobs:
             RUBY_API_VERSION=$(echo "${{ inputs.ruby_version }}" | cut -d. -f1,2).0
             gem uninstall -i /usr/local/rvm/rubies/ruby-${{ inputs.ruby_version }}/lib/ruby/gems/${RUBY_API_VERSION}  rubygems-bundler -a -x
           fi
-          PACKAGE_CMD="veracode package --source source-code --output veracode-artifacts --trust"
+          PACKAGE_CMD="veracode package --source source-code --output veracode-artifacts --trust --skip-packagers sql,cobol"
 
           if [[ "${{ inputs.debug }}" == "true" ]]; then
             PACKAGE_CMD="$PACKAGE_CMD --verbose"
@@ -257,7 +257,8 @@ jobs:
             "package",
             "--source", "source-code",
             "--output", "veracode-artifacts",
-            "--trust"
+            "--trust",
+            "--skip-packagers", "sql, cobol"
           )
 
           if ("${{ inputs.debug }}" -eq "true") {
