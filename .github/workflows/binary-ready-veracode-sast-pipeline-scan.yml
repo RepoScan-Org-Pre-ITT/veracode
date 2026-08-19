@@ -90,6 +90,7 @@ jobs:
     runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
     needs: [register, validations, prepare_pipeline_scan]
     strategy:
+      fail-fast: false
       matrix:
         file: ${{fromJson(needs.prepare_pipeline_scan.outputs.matrix_files)}}
 
