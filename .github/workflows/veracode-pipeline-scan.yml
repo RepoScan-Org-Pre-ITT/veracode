@@ -86,6 +86,7 @@ jobs:
     runs-on: ${{ fromJson(inputs.default_runs_on) }}
     needs: prepare_pipeline_scan
     strategy:
+      fail-fast: false
       matrix:
         file: ${{fromJson(needs.prepare_pipeline_scan.outputs.matrix_files)}}
 
@@ -110,7 +111,7 @@ jobs:
       - name: Veracode Pipeline-Scan
         if: always()
         id: pipeline-scan
-        uses: veracode/Veracode-pipeline-scan-action@v1.0.23
+        uses: veracode/Veracode-pipeline-scan-action@v1.0.24
         with:
           vid: ${{ secrets.VERACODE_API_ID }}
           vkey: ${{ secrets.VERACODE_API_KEY }}
