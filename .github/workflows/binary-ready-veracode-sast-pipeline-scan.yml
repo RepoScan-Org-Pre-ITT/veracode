@@ -128,6 +128,7 @@ jobs:
           veracode_policy_name: ${{ github.event.client_payload.policy_name }}
           file: ./veracode_artifact_directory/${{ matrix.file }}
           fail_build: ${{ github.event.client_payload.user_config.break_build_policy_findings }}
+          fail_build_error: ${{ github.event.client_payload.user_config.break_build_on_error }}
           summary_output: true
           summary_output_file: ${{ strategy.job-index }}-results.txt
           json_output: true
