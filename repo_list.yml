@@ -1,2 +1,4 @@
-include_repos: '*'
-exclude_repos: vulnado
+include_repos:
+  - '*'
+exclude_repos:
+  - vulnado
